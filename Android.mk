@@ -14,7 +14,8 @@
 # limitations under the License.
 #
 
-ifneq ($(filter gxl gxm,$(TARGET_AMLOGIC_SOC)),)
+ifneq ($(filter gxl gxm g12b,$(TARGET_AMLOGIC_SOC)),)
+ifeq ($(TARGET_USES_P_MODULES),true)
 LOCAL_PATH := $(call my-dir)
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
@@ -43,5 +44,6 @@ $(_optee_ko): $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/$(BOARD_KERNEL_IMAGE_NAME)
 	touch $(_optee_intermediates)/optee-module.ko
 
 include $(BUILD_SYSTEM)/base_rules.mk
+endif
 endif
 endif
